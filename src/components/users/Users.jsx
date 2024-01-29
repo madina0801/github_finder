@@ -8,8 +8,6 @@ import Search from './Search';
 
 import Spinner from "../Spinner";
 
-dotenv.config();
-
 const Users = () => {
 	const [users, setUsers] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -22,7 +20,7 @@ const Users = () => {
 	const fetchUsers = async () => {
 		setLoading(true);
 		try {
-			const response = await axios.get('https://api.github.com/users?q=${text}&client_id=${dotenv.process.GITHUB_CLIENT_ID}&client_secret=${dotenv.process.GITHUB_CLIENT_SECRET}');
+			const response = await axios.get('https://api.github.com/users?q=${text}&client_id=${dotenv.process.GITHUB_CLIENT_ID}&client_secret=${import.meta.env.VITE_GITHUB_CLIENT_ID}');
 			setUsers(response.data);
 			setLoading(false);
 		} catch (err) {

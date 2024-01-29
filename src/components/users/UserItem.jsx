@@ -1,9 +1,6 @@
-import dotenv from 'dotenv';
 import React, { Component } from "react";
 
-dotenv.config();
-
-const githubClientId = process.env.GITHUB_CLIENT_ID;
+const githubClientId = import.meta.env.VITE_GITHUB_CLIENT_ID;
 
 const UserItem = ({ user }) => {
 	const { login, avatar_url, html_url } = this.props.user;
