@@ -11,6 +11,7 @@ import User from "./components/users/User";
 import Repos from "./components/Repos";
 import RepoItem from "./components/RepoItem";
 import List from "./components/List";
+import Search from "./components/users/Search";
 
 const router = createBrowserRouter(
  createRoutesFromElements(
@@ -36,19 +37,28 @@ function App() {
   setUsers([...users, newUser]);
   setNewUser("");
  };
+
  return (
   <>
-  <Navbar />
-  <RouterProvider router={router}/>
-  <div>
-   <h1>User List</h1>
-   <List items={users} />
+   <Navbar />
    <div>
-    <label htmlFor="small-input">Enter User</label>
-    <input type="text" id="small-input" />
+    {/* <h1>User List</h1>
+    <List items={users} />
+    <div>
+     <label htmlFor="small-input">Enter User</label>
+     <input
+      type="text"
+      id="small-input"
+      value={newUser} // Added value prop to bind input value to state
+      onChange={(e) => setNewUser(e.target.value)} // Added onChange to update newUser state
+     />
+    </div> */}
+    <button type="button" onClick={handleAddUser}>
+     Add user
+    </button>
    </div>
-   <button type="button">Add user</button>
-  </div>
+   <Users />
+   <RouterProvider router={router}/>
   </>
  );
 }

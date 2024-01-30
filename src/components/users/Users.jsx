@@ -17,11 +17,11 @@ const Users = () => {
 		setSearchQuery(query);
 	}
 
-	const fetchUsers = async () => {
+	const fetchUsers = async (searchQuery) => {
 		setLoading(true);
 		try {
-			const response = await axios.get('https://api.github.com/users?q=${text}&client_id=${dotenv.process.GITHUB_CLIENT_ID}&client_secret=${import.meta.env.VITE_GITHUB_CLIENT_ID}');
-			setUsers(response.data);
+			const response = await axios.get('https://api.github.com/users?q=${searchQuery}&client_id=${import.meta.env.GITHUB_CLIENT_ID}&client_secret=${import.meta.env.VITE_GITHUB_CLIENT_ID}');
+			setUsers(response.data.items);
 			setLoading(false);
 		} catch (err) {
 			console.log(err);
@@ -36,7 +36,7 @@ const Users = () => {
 	return (
 		<div>
 			<Search onSearch={handleSearch} />
-			{loading ? (<Spinner />) : <UserList users={users} />}
+			{/* {loading ? (<Spinner />) : <UserList users={users} />} */}
 		</div>
 	)
 };
